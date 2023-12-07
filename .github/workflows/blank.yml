@@ -56,7 +56,7 @@ jobs:
         run: ls -R $HOME/.azure
 
       - name: Operation Listing
-        run: az deployment operation list --name synapseprodyash --query "[].{Operation:operation, Status:status, Code:statusCode, Message:statusMessage}" --output table
+        run: az deployment operation group list --name synapseprodyash --resource-group Yash-Prod --query "[].{Operation:operation, Status:status, Code:statusCode, Message:statusMessage}" --output table
         env:
           AZURE_CONFIG_DIR: ${{ runner.workspace }}/.azure
           AZURE_SUBSCRIPTION_ID: ${{ secrets.AZURE_SUBSCRIPTION_ID }}
