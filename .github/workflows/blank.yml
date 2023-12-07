@@ -1,26 +1,28 @@
-name: workspace deployment
+name: Deploy Synapse Workspace
 
 on:
-    push:
-        branches: [ main ]
+  push:
+    branches:
+      - main
+
 jobs:
-    release:
-        # You also can use the self-hosted runners.
-        runs-on: windows-latest
-        steps:
-        # Checks out your repository under $GITHUB_WORKSPACE, so your job can access it.
-        - uses: actions/checkout@v2
-        - uses: azure/synapse-workspace-deployment@release-1.0
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v2
+
+      - name: Deploy Synapse Workspace
+        uses: Azure/synapse-workspace-deployment
         with:
-          TargetWorkspaceName: 'target workspace name'
-          TemplateFile: './path of the TemplateForWorkspace.json'
-          ParametersFile: './path of the TemplateParametersForWorkspace.json'
-          OverrideArmParameters: './path of the parameters.yaml'
+          TargetWorkspaceName: 'targetworkspace'
+          TemplateFile: './TemplateForWorkspace.json'
+          ParametersFile: './TemplateParametersForWorkspace.json'
           environment: 'Azure Public'
-          resourceGroup: 'target workspace resource group'
-          clientId: ${{secrets.CLIENTID}}
-          clientSecret:  ${{secrets.CLIENTSECRET}}
-          subscriptionId: 'subscriptionId of the target workspace'
-          tenantId: 'tenantId'
-          DeleteArtifactsNotInTemplate: 'true'
-          managedIdentity: 'False'
+          resourceGroup: 'myresourcegroup'
+          clientId: ${{ secrets.CLIENTID }}
+          clientSecret: ${{ secrets.CLIENTSECRET }}
+          subscriptionId: ${{ secrets.SUBID }}
+          tenantId: ${{ secrets.TENANTID }}
+          operation: 'deploy'
