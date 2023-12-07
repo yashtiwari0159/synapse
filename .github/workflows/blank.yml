@@ -21,8 +21,8 @@ jobs:
         uses: Azure/Synapse-workspace-deployment@V1.8.0
         with:
           TargetWorkspaceName: 'synapseprodyash'
-          TemplateFile: './TemplateForWorkspace.json'
-          ParametersFile: './TemplateParametersForWorkspace.json'
+          TemplateFile: './synapseuatyash/TemplateForWorkspace.json'
+          ParametersFile: './synapseuatyash/TemplateParametersForWorkspace.json'
           environment: 'Azure Public'
           resourceGroup: 'Yash-Prod'
           clientId: ${{ secrets.AZURE_CLIENT_ID }}
