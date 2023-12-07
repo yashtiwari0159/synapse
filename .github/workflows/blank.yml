@@ -43,13 +43,7 @@ jobs:
         env:
           AZURE_SUBSCRIPTION_ID: ${{ secrets.AZURE_SUBSCRIPTION_ID }}
           AZURE_CONFIG_DIR:  ${{ runner.workspace }}/.azure
-      
-      - name: operation list
-        run: |
-          az account set --subscription cd80669d-c886-455a-b108-8299fac678e3
-          az deployment operation group list --name TemplateForWorkspace --resource-group Yash-UAT --query "[].{Operation:operation, Status:status, Code:statusCode, Message:statusMessage}" --output table
-        env:
-          AZURE_CONFIG_DIR:  ${{ runner.workspace }}/.azure
+   
       - name: Deploy ARM Template to Production
         run: |
           az deployment group create \
