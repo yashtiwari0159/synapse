@@ -6,7 +6,7 @@
 			"value": "synapseprodyash"
 		},
 		"synapseuatyash-WorkspaceDefaultSqlServer_connectionString": {
-			"value": "Server=tcp:synapseuatyash-ondemand.sql.azuresynapse.net,1433;Initial Catalog=master;Persist Security Info=False;User ID={your_username};MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Authentication="Active Directory Integrated""
+			"value": "Server=tcp:synapseuatyash-ondemand.sql.azuresynapse.net,1433;Initial Catalog=master;Persist Security Info=False;User ID={your_username};MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Authentication='Active Directory Integrated'"
 		},
 		"lskv_synapse_uat_properties_typeProperties_baseUrl": {
 			"value": "https://kvprodyash.vault.azure.net/"
