@@ -3,19 +3,19 @@
 	"contentVersion": "1.0.0.0",
 	"parameters": {
 		"workspaceName": {
-			"value": "synapseuatyash"
+			"value": "synapseprodyash"
 		},
 		"synapseuatyash-WorkspaceDefaultSqlServer_connectionString": {
-			"value": "Integrated Security=False;Encrypt=True;Connection Timeout=30;Data Source=tcp:synapseuatyash.sql.azuresynapse.net,1433;Initial Catalog=@{linkedService().DBName}"
+			"value": "Integrated Security=False;Encrypt=True;Connection Timeout=30;Data Source=tcp:synapseprodyash.sql.azuresynapse.net,1433;Initial Catalog=@{linkedService().DBName}"
 		},
 		"lskv_synapse_uat_properties_typeProperties_baseUrl": {
-			"value": "https://kvuatyash.vault.azure.net/"
+			"value": "https://kvprodyash.vault.azure.net/"
 		},
 		"lssto_synapse_uat_properties_typeProperties_connectionString_secretName": {
-			"value": "sec-uat-yash"
+			"value": "sec-prod-yash"
 		},
 		"synapseuatyash-WorkspaceDefaultStorage_properties_typeProperties_url": {
-			"value": "https://dkuatyash.dfs.core.windows.net"
+			"value": "https://anprodyash.dfs.core.windows.net"
 		}
 	}
 }
