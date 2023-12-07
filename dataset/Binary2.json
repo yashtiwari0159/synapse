@@ -1,0 +1,19 @@
+{
+	"name": "Binary2",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "lssto_synapse_uat",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "Binary",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobStorageLocation",
+				"fileName": "output",
+				"container": "outputsynapse"
+			}
+		}
+	},
+	"type": "Microsoft.Synapse/workspaces/datasets"
+}

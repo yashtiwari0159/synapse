@@ -1,0 +1,11 @@
+{
+	"name": "lskv_synapse_uat",
+	"type": "Microsoft.Synapse/workspaces/linkedservices",
+	"properties": {
+		"annotations": [],
+		"type": "AzureKeyVault",
+		"typeProperties": {
+			"baseUrl": "https://kvuatyash.vault.azure.net/"
+		}
+	}
+}
