@@ -1,46 +1,26 @@
-name: Deploy Synapse Workspace
+name: workspace deployment
 
 on:
-  push:
-    branches:
-      - main
-
+    push:
+        branches: [ publish_branch ]
 jobs:
-  deploy:
-    runs-on: ubuntu-latest
-
-    steps:
-      - name: Checkout Repository
-        uses: actions/checkout@v2
-
-      - name: Set up Azure CLI
-        uses: azure/CLI@v1
+    release:
+        # You also can use the self-hosted runners.
+        runs-on: windows-latest
+        steps:
+        # Checks out your repository under $GITHUB_WORKSPACE, so your job can access it.
+        - uses: actions/checkout@v2
+        - uses: azure/synapse-workspace-deployment@release-1.0
         with:
-          azcliversion: 2.32.0
-
-      - name: Login to Azure
-        run: az login --service-principal --tenant ${{ secrets.AZURE_TENANT_ID }} --username ${{ secrets.AZURE_CLIENT_ID }} --password ${{ secrets.AZURE_CLIENT_SECRET }}
-
-      - name: Deploy Synapse Workspace
-        uses: Azure/Synapse-workspace-deployment
-        with:
-          # Specify deployment parameters
-          workspaceName: synapseprodyash
-          synapseuatyash-WorkspaceDefaultSqlServer_connectionString: Integrated Security=False;Encrypt=True;Connection Timeout=30;Data Source=tcp:synapseprodyash.sql.azuresynapse.net,1433;Initial Catalog=@{linkedService().DBName}
-          lskv_synapse_uat_properties_typeProperties_baseUrl: https://kvprodyash.vault.azure.net/
-          lssto_synapse_uat_properties_typeProperties_connectionString_secretName: sec-prod-yash
-          synapseuatyash-WorkspaceDefaultStorage_properties_typeProperties_url: https://anprodyash.dfs.core.windows.net
-        env:
-          AZURE_SUBSCRIPTION_ID: ${{ secrets.AZURE_SUBSCRIPTION_ID }}
-
-
-
-
-
-
-
-
-
-
-
-  
+          TargetWorkspaceName: 'target workspace name'
+          TemplateFile: './path of the TemplateForWorkspace.json'
+          ParametersFile: './path of the TemplateParametersForWorkspace.json'
+          OverrideArmParameters: './path of the parameters.yaml'
+          environment: 'Azure Public'
+          resourceGroup: 'target workspace resource group'
+          clientId: ${{secrets.CLIENTID}}
+          clientSecret:  ${{secrets.CLIENTSECRET}}
+          subscriptionId: 'subscriptionId of the target workspace'
+          tenantId: 'tenantId'
+          DeleteArtifactsNotInTemplate: 'true'
+          managedIdentity: 'False'
