@@ -16,13 +16,13 @@ jobs:
       - name: Deploy Synapse Workspace
         uses: Azure/Synapse-workspace-deployment@V1.8.0
         with:
-          TargetWorkspaceName: 'targetworkspace'
+          TargetWorkspaceName: 'synapseprodyash'
           TemplateFile: './TemplateForWorkspace.json'
           ParametersFile: './TemplateParametersForWorkspace.json'
           environment: 'Azure Public'
-          resourceGroup: 'myresourcegroup'
-          clientId: ${{ secrets.CLIENTID }}
-          clientSecret: ${{ secrets.CLIENTSECRET }}
-          subscriptionId: ${{ secrets.SUBID }}
-          tenantId: ${{ secrets.TENANTID }}
+          resourceGroup: 'Yash-Prod'
+          clientId: ${{ secrets.AZURE_CLIENT_ID }}
+          clientSecret: ${{ secrets.AZURE_CLIENT_SECRET }}
+          subscriptionId: ${{ secrets.AZURE_SUBSCRIPTION_ID }}
+          tenantId: ${{ secrets.AZURE_TENANT_ID }}
           operation: 'deploy'
