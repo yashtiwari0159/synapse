@@ -1,0 +1,21 @@
+{
+	"$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentParameters.json#",
+	"contentVersion": "1.0.0.0",
+	"parameters": {
+		"workspaceName": {
+			"value": "synapseuatyash"
+		},
+		"synapseuatyash-WorkspaceDefaultSqlServer_connectionString": {
+			"value": "Integrated Security=False;Encrypt=True;Connection Timeout=30;Data Source=tcp:synapseuatyash.sql.azuresynapse.net,1433;Initial Catalog=@{linkedService().DBName}"
+		},
+		"lskv_synapse_uat_properties_typeProperties_baseUrl": {
+			"value": "https://kvuatyash.vault.azure.net/"
+		},
+		"lssto_synapse_uat_properties_typeProperties_connectionString_secretName": {
+			"value": "sec-uat-yash"
+		},
+		"synapseuatyash-WorkspaceDefaultStorage_properties_typeProperties_url": {
+			"value": "https://dkuatyash.dfs.core.windows.net"
+		}
+	}
+}
