@@ -22,7 +22,7 @@ jobs:
         run: az login --service-principal --tenant ${{ secrets.AZURE_TENANT_ID }} --username ${{ secrets.AZURE_CLIENT_ID }} --password ${{ secrets.AZURE_CLIENT_SECRET }}
 
       - name: Deploy Synapse Workspace
-        uses: azure/synapse-workspace-deployment@main
+        uses: Azure/Synapse-workspace-deployment@v1.8.0
         with:
           # Specify deployment parameters
           workspaceName: synapseprodyash
