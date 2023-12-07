@@ -52,10 +52,13 @@ jobs:
         env:
           AZURE_SUBSCRIPTION_ID: ${{ secrets.AZURE_SUBSCRIPTION_ID }}
           AZURE_CONFIG_DIR:  ${{ runner.workspace }}/.azure
+      - name: Check Azure CLI Configuration
+        run: ls -R $HOME/.azure
 
       - name: Operation Listing
         run: az deployment operation list --name synapseprodyash --resource-group Yash-Prod --query "[].{Operation:operation, Status:status, Code:statusCode, Message:statusMessage}" --output table
-        
+        env:
+          AZURE_CONFIG_DIR: ${{ runner.workspace }}/.azure
       - name: Deploy ARM Template to Production
         run: |
           az deployment group create \
