@@ -33,13 +33,6 @@ jobs:
       - name: Print Directory
         run: pwd
 
-      - name: Debug Information
-        run: |
-          pwd
-          ls -R ${{ runner.workspace }}
-          ls -R ${{ runner.workspace }}/.azure
-        env:
-          AZURE_CONFIG_DIR: ${{ runner.workspace }}/.azure
       - name: Set Permissions
         run: chmod -R 700 ${{ runner.workspace }}/.azure
         env:
@@ -48,18 +41,10 @@ jobs:
         
       - name: Login to Azure
         run: az login --service-principal --tenant ${{ secrets.AZURE_TENANT_ID }} --username ${{ secrets.AZURE_CLIENT_ID }} --password ${{ secrets.AZURE_CLIENT_SECRET }}
-         
         env:
           AZURE_SUBSCRIPTION_ID: ${{ secrets.AZURE_SUBSCRIPTION_ID }}
           AZURE_CONFIG_DIR:  ${{ runner.workspace }}/.azure
-      - name: Check Azure CLI Configuration
-        run: ls -R $HOME/.azure
 
-      - name: Operation Listing
-        run: az deployment operation group list --name synapseprodyash --resource-group Yash-Prod --query "[].{Operation:operation, Status:status, Code:statusCode, Message:statusMessage}" --output table
-        env:
-          AZURE_CONFIG_DIR: ${{ runner.workspace }}/.azure
-          AZURE_SUBSCRIPTION_ID: ${{ secrets.AZURE_SUBSCRIPTION_ID }}
       - name: Deploy ARM Template to Production
         run: |
           az deployment group create \
