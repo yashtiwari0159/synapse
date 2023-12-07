@@ -6,7 +6,7 @@
 			"value": "synapseprodyash"
 		},
 		"synapseuatyash-WorkspaceDefaultSqlServer_connectionString": {
-			"value": "Integrated Security=False;Encrypt=True;Connection Timeout=30;Data Source=tcp:synapseprodyash-ondemand.sql.azuresynapse.net,1433;Initial Catalog=@{linkedService().DBName}"
+			"value": "Integrated Security=False;Encrypt=True;Connection Timeout=30;Data Source=tcp:synapseprodyash-ondemand.sql.azuresynapse.net,1433;Initial Catalog=master"
 		},
 		"lskv_synapse_uat_properties_typeProperties_baseUrl": {
 			"value": "https://kvprodyash.vault.azure.net/"
