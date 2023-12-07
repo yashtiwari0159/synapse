@@ -1,0 +1,54 @@
+name: Deploy to Production Synapse
+
+on:
+  push:
+    branches:
+      - main  # Change this to your main branch name
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v2
+        with:
+          ref: workspace_publish
+
+      - name: Set up Azure CLI
+        uses: azure/CLI@v1
+        with:
+          azcliversion: 2.32.0
+          inlineScript: |
+            az --version
+        env: 
+          AZURE_CONFIG_DIR:  ${{ runner.workspace }}/.azure
+          
+      - name: Create Azure CLI config directory
+        run: mkdir -p ${{ runner.workspace }}/.azure
+        
+      - name: List files
+        run: ls -R
+
+      - name: Print Directory
+        run: pwd
+        
+      - name: Login to Azure
+        run: az login --service-principal --tenant ${{ secrets.AZURE_TENANT_ID }} --username ${{ secrets.AZURE_CLIENT_ID }} --password ${{ secrets.AZURE_CLIENT_SECRET }}
+         
+        env:
+          AZURE_SUBSCRIPTION_ID: ${{ secrets.AZURE_SUBSCRIPTION_ID }}
+          AZURE_CONFIG_DIR:  ${{ runner.workspace }}/.azure
+
+        
+      - name: Deploy ARM Template to Production
+        run: |
+          az deployment group create \
+            --resource-group Yash-Prod \
+            --template-file ${{ runner.workspace }}/synapse/workspace_publish/ARMTemplateForFactory.json \
+            --parameters ${{ runner.workspace }}/synapse/workspace_publish/ARMTemplateParametersForFactory.json \
+            --mode Incremental \
+            --subscription ${{ secrets.AZURE_SUBSCRIPTION_ID }}
+        env:
+          AZURE_SUBSCRIPTION_ID: ${{ secrets.AZURE_SUBSCRIPTION_ID }}
+          AZURE_CONFIG_DIR:  ${{ runner.workspace }}/.azure
